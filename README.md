@@ -1,8 +1,8 @@
-# Microsoft.Extensions.AI for Local LLMs
+# [Microsoft.Extensions.AI](https://learn.microsoft.com/dotnet/ai/microsoft-extensions-ai) for Local LLMs
 
-This provides sample codes that uses Microsoft.Extensions.AI for locally running LLMs through Docker Model Runner, Foundry Local, Hugging Face and Ollama.
+This provides sample codes that uses Microsoft.Extensions.AI for locally running LLMs through [Docker Model Runner](https://docs.docker.com/ai/model-runner/), [Foundry Local](https://learn.microsoft.com/azure/ai-foundry/foundry-local/what-is-foundry-local), [Hugging Face](https://huggingface.co/) and [Ollama](https://ollama.com/).
 
-> This is an trim-down version of [<img src="https://github.com/aliencube/open-chat-playground/raw/main/assets/icon-transparent.svg" alt="OpenChat Playground" width="16" /> OpenChat Playground](https://github.com/aliencube/open-chat-playground), specific to work for local LLMs. If you want to see more language models supported including MaaS and other vendors, try out [<img src="https://github.com/aliencube/open-chat-playground/raw/main/assets/icon-transparent.svg" alt="OpenChat Playground" width="16" /> OpenChat Playground](https://github.com/aliencube/open-chat-playground) instead.
+> This is a trim-down version of [<img src="https://github.com/aliencube/open-chat-playground/raw/main/assets/icon-transparent.svg" alt="OpenChat Playground" width="16" /> OpenChat Playground](https://github.com/aliencube/open-chat-playground), specific to dealing with locally running LLMs. If you want to see more language models supported including MaaS and other vendors, try out [<img src="https://github.com/aliencube/open-chat-playground/raw/main/assets/icon-transparent.svg" alt="OpenChat Playground" width="16" /> OpenChat Playground](https://github.com/aliencube/open-chat-playground) instead.
 
 ## Prerequisites
 
