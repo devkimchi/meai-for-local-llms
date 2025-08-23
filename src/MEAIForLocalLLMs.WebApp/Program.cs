@@ -1,68 +1,27 @@
-using System.ClientModel;
-
+using MEAIForLocalLLMs.WebApp.Abstractions;
 using MEAIForLocalLLMs.WebApp.Components;
 
-using Microsoft.AI.Foundry.Local;
 using Microsoft.Extensions.AI;
-
-using OllamaSharp;
-
-using OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var config = builder.Configuration;
+var settings = ArgumentOptions.Parse(config, args);
+if (settings.Help == true)
+{
+    ArgumentOptions.DisplayHelp();
+    return;
+}
+
+builder.Services.AddSingleton(settings);
 builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-// GitHub Models
-// var credential = new ApiKeyCredential(builder.Configuration["GitHubModels:Token"] ?? throw new InvalidOperationException("Missing configuration: GitHubModels:Token. See the README for details."));
-// var openAIOptions = new OpenAIClientOptions()
-// {
-//     Endpoint = new Uri("https://models.inference.ai.azure.com")
-// };
+var chatClient = await LanguageModelConnector.CreateChatClientAsync(settings);
 
-// var ghModelsClient = new OpenAIClient(credential, openAIOptions);
-// var chatClient = ghModelsClient.GetChatClient("gpt-4o-mini").AsIChatClient();
-
-// Ollama
-// var ollamaClient = new OllamaApiClient(new Uri("http://localhost:11434"))
-// {
-//     SelectedModel = "gemma3"
-// };
-// var chatClient = ollamaClient as IChatClient;
-
-// Hugging Face
-// var hfClient = new OllamaApiClient(new Uri("http://localhost:11434"))
-// {
-//     SelectedModel = "hf.co/LGAI-EXAONE/EXAONE-4.0-1.2B-GGUF"
-// };
-// var chatClient = hfClient as IChatClient;
-
-// Docker Model Runner
-var model = "ai/gpt-oss";
-var credential = new ApiKeyCredential("docker-model-runner-key");
-var openAIOptions = new OpenAIClientOptions()
-{
-    Endpoint = new Uri("http://localhost:12434/engines/v1")
-};
-var dockerClient = new OpenAIClient(credential, openAIOptions);
-var chatClient = dockerClient.GetChatClient(model).AsIChatClient();
-
-Console.WriteLine($"Docker Model Runner client initialized with {model}.");
-
-// Foundry Local
-// var alias = "phi-4";
-// var manager = await FoundryLocalManager.StartModelAsync(alias);
-// var model = await manager.GetModelInfoAsync(alias);
-// var credential = new ApiKeyCredential(manager.ApiKey);
-// var openAIOptions = new OpenAIClientOptions
-// {
-//     Endpoint = manager.Endpoint
-// };
-// var foundryLocalClient = new OpenAIClient(credential, openAIOptions);
-// var chatClient = foundryLocalClient.GetChatClient(model?.ModelId).AsIChatClient();
-
-builder.Services.AddChatClient(chatClient);
+builder.Services.AddChatClient(chatClient)
+                .UseFunctionInvocation()
+                .UseLogging();
 
 var app = builder.Build();
 

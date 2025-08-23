@@ -2,8 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>MEAIForLocalLLMs.WebApp</AssemblyName>
+    <RootNamespace>MEAIForLocalLLMs.WebApp</RootNamespace>
+
     <UserSecretsId>5f1b4d3a-a3df-483a-99c7-c8ee1a1ecc90</UserSecretsId>
   </PropertyGroup>
 
