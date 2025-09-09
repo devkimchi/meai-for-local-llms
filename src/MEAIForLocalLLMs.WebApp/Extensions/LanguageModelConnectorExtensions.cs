@@ -12,7 +12,7 @@ public static class LanguageModelConnectorExtensions
         builder = settings.ConnectorType switch
         {
             ConnectorType.GitHubModels => builder.AddGitHubModels(settings),
-            // ConnectorType.DockerModelRunner => builder.AddDockerModelRunner(settings),
+            ConnectorType.DockerModelRunner => builder.AddDockerModelRunner(settings),
             ConnectorType.FoundryLocal => builder.AddFoundryLocal(settings),
             ConnectorType.HuggingFace => builder.AddHuggingFace(settings),
             ConnectorType.Ollama => builder.AddOllama(settings),
@@ -24,7 +24,7 @@ public static class LanguageModelConnectorExtensions
 
     public static WebApplicationBuilder AddGitHubModels(this WebApplicationBuilder builder, AppSettings settings)
     {
-        builder.AddOpenAIClient("github")
+        builder.AddOpenAIClient("github-models")
                .AddChatClient()
                .UseFunctionInvocation()
                .UseLogging();
@@ -34,6 +34,11 @@ public static class LanguageModelConnectorExtensions
 
     public static WebApplicationBuilder AddDockerModelRunner(this WebApplicationBuilder builder, AppSettings settings)
     {
+        builder.AddOpenAIClient("docker-model-runner")
+               .AddChatClient()
+               .UseFunctionInvocation()
+               .UseLogging();
+
         return builder;
     }
 
@@ -49,7 +54,7 @@ public static class LanguageModelConnectorExtensions
 
     public static WebApplicationBuilder AddHuggingFace(this WebApplicationBuilder builder, AppSettings settings)
     {
-        builder.AddOllamaApiClient("model")
+        builder.AddOllamaApiClient("hugging-face")
                .AddChatClient()
                .UseFunctionInvocation()
                .UseLogging();

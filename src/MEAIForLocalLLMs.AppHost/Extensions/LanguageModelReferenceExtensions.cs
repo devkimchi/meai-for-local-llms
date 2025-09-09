@@ -1,3 +1,5 @@
+using System.Text;
+
 using MEAIForLocalLLMs.Common.Configurations;
 using MEAIForLocalLLMs.Common.Connectors;
 
@@ -25,7 +27,7 @@ public static class LanguageModelReferenceExtensions
 
     public static IResourceBuilder<ProjectResource> AddGitHubModels(this IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> project, AppSettings settings)
     {
-        var github = builder.AddGitHubModel("github", settings.Model!)
+        var github = builder.AddGitHubModel("github-models", settings.Model!)
                             .WithHealthCheck();
 
         project.WithReference(github)
@@ -37,6 +39,20 @@ public static class LanguageModelReferenceExtensions
 
     public static IResourceBuilder<ProjectResource> AddDockerModelRunner(this IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> project, AppSettings settings)
     {
+        var sb = new StringBuilder();
+        sb.AppendFormat("Endpoint={0};Key={1};DeploymentId={2};Model={3}",
+                        settings.DockerModelRunner?.BaseUrl,
+                        settings.DockerModelRunner?.ApiKey,
+                        settings.DockerModelRunner?.Model,
+                        settings.DockerModelRunner?.Model);
+        var connectionString = sb.ToString();
+
+        var docker = builder.AddConnectionString("docker-model-runner", builder => builder.AppendLiteral(connectionString));
+
+        project.WithReference(docker)
+               .WaitFor(docker)
+               .WithEnvironment("DockerModelRunner:Model", settings.DockerModelRunner?.Model);
+
         return project;
     }
 
@@ -55,10 +71,10 @@ public static class LanguageModelReferenceExtensions
 
     public static IResourceBuilder<ProjectResource> AddHuggingFace(this IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> project, AppSettings settings)
     {
-        var hf = builder.AddOllama("huggingface")
+        var hf = builder.AddOllama("hf")
                         .WithImageTag("latest")
                         .WithDataVolume();
-        var model = hf.AddHuggingFaceModel("model", settings.Model!);
+        var model = hf.AddHuggingFaceModel("hugging-face", settings.Model!);
 
         project.WithReference(model)
                .WaitFor(model)
