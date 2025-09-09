@@ -21,6 +21,11 @@ public partial class AppSettings
     public string? Model { get; set; }
 
     /// <summary>
+    /// Gets or sets the value indicating whether to use .NET Aspire or not.
+    /// </summary>
+    public bool UseAspire { get; set; }
+
+    /// <summary>
     /// Gets or sets the value indicating whether to display help information or not.
     /// </summary>
     public bool Help { get; set; }
