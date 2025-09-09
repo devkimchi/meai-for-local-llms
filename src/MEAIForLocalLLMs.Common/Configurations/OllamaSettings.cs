@@ -1,6 +1,6 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
+using MEAIForLocalLLMs.Common.Abstractions;
 
-namespace MEAIForLocalLLMs.WebApp.Configurations;
+namespace MEAIForLocalLLMs.Common.Configurations;
 
 /// <inheritdoc/>
 public partial class AppSettings

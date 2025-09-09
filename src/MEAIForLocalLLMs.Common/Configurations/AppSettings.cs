@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-using MEAIForLocalLLMs.WebApp.Connectors;
+using MEAIForLocalLLMs.Common.Connectors;
 
-namespace MEAIForLocalLLMs.WebApp.Configurations;
+namespace MEAIForLocalLLMs.Common.Configurations;
 
 /// <summary>
 /// This represents the app settings entity from appsettings.json.

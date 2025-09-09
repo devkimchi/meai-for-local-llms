@@ -1,4 +1,4 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
+using MEAIForLocalLLMs.Common.Abstractions;
 using MEAIForLocalLLMs.WebApp.Components;
 
 using Microsoft.Extensions.AI;

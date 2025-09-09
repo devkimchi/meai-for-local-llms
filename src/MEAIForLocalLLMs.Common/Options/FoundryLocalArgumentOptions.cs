@@ -1,7 +1,9 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
-using MEAIForLocalLLMs.WebApp.Configurations;
+using MEAIForLocalLLMs.Common.Abstractions;
+using MEAIForLocalLLMs.Common.Configurations;
 
-namespace MEAIForLocalLLMs.WebApp.Options;
+using Microsoft.Extensions.Configuration;
+
+namespace MEAIForLocalLLMs.Common.Options;
 
 /// <summary>
 /// This represents the argument options entity for Foundry Local.
