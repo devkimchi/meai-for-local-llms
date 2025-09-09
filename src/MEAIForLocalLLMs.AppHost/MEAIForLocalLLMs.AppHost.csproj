@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.4.2" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>MEAIForLocalLLMs.AppHost</AssemblyName>
+    <RootNamespace>MEAIForLocalLLMs.AppHost</RootNamespace>
+
+    <UserSecretsId>5f1b4d3a-a3df-483a-99c7-c8ee1a1ecc90</UserSecretsId>
+    <!-- <UserSecretsId>53fc825d-c027-4552-ab57-ddd566e317ca</UserSecretsId> -->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.*" />
+    <PackageReference Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="9.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MEAIForLocalLLMs.WebApp\MEAIForLocalLLMs.WebApp.csproj" />
+  </ItemGroup>
+
+</Project>

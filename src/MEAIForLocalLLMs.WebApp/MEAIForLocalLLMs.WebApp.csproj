@@ -14,11 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Aspire.OllamaSharp" Version="9.*" />
     <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.*" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.*-*" />
     <PackageReference Include="Microsoft.Extensions.AI" Version="9.*" />
     <PackageReference Include="OllamaSharp" Version="5.*" />
     <PackageReference Include="System.Linq.Async" Version="6.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MEAIForLocalLLMs.ServiceDefaults\MEAIForLocalLLMs.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

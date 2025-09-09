@@ -13,6 +13,8 @@ if (settings.Help == true)
     return;
 }
 
+builder.AddServiceDefaults();
+
 builder.Services.AddSingleton(settings);
 builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
@@ -24,6 +26,8 @@ builder.Services.AddChatClient(chatClient)
                 .UseLogging();
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
