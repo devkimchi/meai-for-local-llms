@@ -1,5 +1,5 @@
+using MEAIForLocalLLMs.AppHost.Extensions;
 using MEAIForLocalLLMs.Common.Abstractions;
-using MEAIForLocalLLMs.Common.Connectors;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -11,16 +11,7 @@ if (settings.Help == true)
     return;
 }
 
-var webapp = builder.AddProject<Projects.MEAIForLocalLLMs_WebApp>("webapp");
-
-if (settings.ConnectorType == ConnectorType.GitHubModels)
-{
-    var github = builder.AddGitHubModel("github", settings.Model!)
-                        .WithHealthCheck();
-
-    webapp.WithReference(github)
-          .WithEnvironment("UseAspire", settings.UseAspire.ToString().ToLowerInvariant())
-          .WaitFor(github);
-}
+var webapp = builder.AddProject<Projects.MEAIForLocalLLMs_WebApp>("webapp")
+                    .WithLanguageModel(settings);
 
 builder.Build().Run();

@@ -24,8 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MEAIForLocalLLMs.ServiceDefaults\MEAIForLocalLLMs.ServiceDefaults.csproj" />
     <ProjectReference Include="..\MEAIForLocalLLMs.Common\MEAIForLocalLLMs.Common.csproj" />
+    <ProjectReference Include="..\MEAIForLocalLLMs.ServiceDefaults\MEAIForLocalLLMs.ServiceDefaults.csproj" />
   </ItemGroup>
 
 </Project>

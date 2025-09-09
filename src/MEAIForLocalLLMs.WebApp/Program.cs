@@ -1,6 +1,6 @@
 using MEAIForLocalLLMs.Common.Abstractions;
-using MEAIForLocalLLMs.Common.Connectors;
 using MEAIForLocalLLMs.WebApp.Components;
+using MEAIForLocalLLMs.WebApp.Extensions;
 
 using Microsoft.Extensions.AI;
 
@@ -22,13 +22,7 @@ builder.Services.AddRazorComponents()
 
 if (settings.UseAspire == true)
 {
-    if (settings.ConnectorType == ConnectorType.GitHubModels)
-    {
-        builder.AddOpenAIClient("github")
-               .AddChatClient()
-               .UseFunctionInvocation()
-               .UseLogging();
-    }
+    builder.AddChatClient(settings);
 }
 else
 {
