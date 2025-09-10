@@ -58,13 +58,57 @@ This provides sample codes that uses Microsoft.Extensions.AI for locally running
 
 As a default, this app uses [GitHub Models](https://github.com/marketplace?type=models).
 
+<details open>
+  <summary><strong>With .NET Aspire</strong></summary>
+
 1. Make sure you are at the repository root.
 
     ```bash
     cd $REPOSITORY_ROOT
     ```
 
-2. Add GitHub Personal Access Token (PAT) for GitHub Models connection. Make sure you should replace `{{YOUR_TOKEN}}` with your GitHub PAT.
+1. Add GitHub Personal Access Token (PAT) for GitHub Models connection. Make sure you should replace `{{YOUR_TOKEN}}` with your GitHub PAT.
+
+    ```bash
+    # bash/zsh
+    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        set "Parameters:github-models-gh-apikey" "{{YOUR_TOKEN}}"
+    ```
+
+    ```bash
+    # PowerShell
+    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        set "Parameters:github-models-gh-apikey" "{{YOUR_TOKEN}}"
+    ```
+
+    > For more details about GitHub PAT, refer to the doc, [Managing your personal access tokens](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+1. Run the app. The default language model is `openai/gpt-4o-mini`.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost
+    ```
+
+   If you want to change the language model, add the `--model` option with a preferred model name. You can find the language model from the [GitHub Models catalog page](https://github.com/marketplace?type=models).
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type GitHubModels --model <model-name>
+    ```
+
+1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+
+</details>
+
+<details>
+  <summary><strong>Without .NET Aspire</strong></summary>
+
+1. Make sure you are at the repository root.
+
+    ```bash
+    cd $REPOSITORY_ROOT
+    ```
+
+1. Add GitHub Personal Access Token (PAT) for GitHub Models connection. Make sure you should replace `{{YOUR_TOKEN}}` with your GitHub PAT.
 
     ```bash
     # bash/zsh
@@ -80,7 +124,7 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
     > For more details about GitHub PAT, refer to the doc, [Managing your personal access tokens](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
-3. Run the app. The default language model is `openai/gpt-4o-mini`.
+1. Run the app. The default language model is `openai/gpt-4o-mini`.
 
     ```bash
     dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp
@@ -92,9 +136,51 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp -- --connector-type GitHubModels --model <model-name>
     ```
 
-4. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
+1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
+
+</details>
 
 ### Use Docker Model Runner
+
+<details open>
+  <summary><strong>With .NET Aspire</strong></summary>
+
+1. Make sure Docker Desktop is up and running.
+
+    ```bash
+    docker info
+    ```
+
+1. Download language model, `ai/gpt-oss`, to your local machine.
+
+    ```bash
+    docker model pull ai/gpt-oss
+    ```
+
+1. Make sure you are at the repository root.
+
+    ```bash
+    cd $REPOSITORY_ROOT
+    ```
+
+1. Run the app. The default language model is `ai/gpt-oss`.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type DockerModelRunner
+    ```
+
+   If you want to change the language model, add the `--model` option with a preferred model name.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type DockerModelRunner --model <model-name>
+    ```
+
+1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+
+</details>
+
+<details>
+  <summary><strong>Without .NET Aspire</strong></summary>
 
 1. Make sure Docker Desktop is up and running.
 
@@ -128,19 +214,61 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
 
+</details>
+
 ### Use Foundry Local
 
-1. Make sure Foundry Local is up and running.
+<details open>
+  <summary><strong>With .NET Aspire</strong></summary>
+
+1. Make sure Foundry Local is NOT running.
 
     ```bash
     foundry service status
     ```
 
-   If Foundry Local service is not up and running, run the following command:
+   If Foundry Local service is up and running, run the following command:
 
     ```bash
-    foundry service start
+    foundry service stop
     ```
+
+1. Download language model, `gpt-oss-20b`, to your local machine.
+
+    ```bash
+    foundry model download gpt-oss-20b
+    ```
+
+   Once you download a language model, the foundry service is automatically up and running. If the service is up and running, stop it first.
+
+    ```bash
+    foundry service stop
+    ```
+
+1. Make sure you are at the repository root.
+
+    ```bash
+    cd $REPOSITORY_ROOT
+    ```
+
+1. Run the app. The default language model is `gpt-oss-20b`.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type FoundryLocal
+    ```
+
+   If you want to change the language model, add the `--model` option with a preferred model name.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type FoundryLocal --model <model-name>
+    ```
+
+1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+
+</details>
+
+<details>
+  <summary><strong>Without .NET Aspire</strong></summary>
 
 1. Download language model, `gpt-oss-20b`, to your local machine.
 
@@ -168,9 +296,41 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
 
+</details>
+
 ### Use Hugging Face
 
-Models from Hugging Face can be run through Ollama server.
+Models from Hugging Face are running through Ollama server.
+
+<details open>
+  <summary><strong>With .NET Aspire</strong></summary>
+
+With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
+
+1. Make sure you are at the repository root.
+
+    ```bash
+    cd $REPOSITORY_ROOT
+    ```
+
+1. Run the app. The default language model is `hf.co/LGAI-EXAONE/EXAONE-4.0-1.2B-GGUF`.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type HuggingFace
+    ```
+
+   If you want to change the language model, add the `--model` option with a preferred model name. Make sure that the model name format MUST follow `hf.co/{ORG_NAME}/{MODEL_NAME}`, and the model name MUST be formatted in GGUF.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type HuggingFace --model <model-name>
+    ```
+
+1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+
+</details>
+
+<details>
+  <summary><strong>Without .NET Aspire</strong></summary>
 
 1. Make sure Ollama is up and running.
 
@@ -204,7 +364,39 @@ Models from Hugging Face can be run through Ollama server.
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
 
-### Use Ollama
+</details>
+
+#### Use Ollama
+
+<details open>
+  <summary><strong>With .NET Aspire</strong></summary>
+
+With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
+
+1. Make sure you are at the repository root.
+
+    ```bash
+    cd $REPOSITORY_ROOT
+    ```
+
+1. Run the app. The default language model is `gpt-oss`.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type Ollama
+    ```
+
+   If you want to change the language model, add the `--model` option with a preferred model name.
+
+    ```bash
+    dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost -- --connector-type Ollama --model <model-name>
+    ```
+
+1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+
+</details>
+
+<details>
+  <summary><strong>Without .NET Aspire</strong></summary>
 
 1. Make sure Ollama is up and running.
 
@@ -237,3 +429,5 @@ Models from Hugging Face can be run through Ollama server.
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
+
+</details>
