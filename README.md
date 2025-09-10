@@ -478,7 +478,7 @@ With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/
 
 </details>
 
-#### Use Ollama
+### Use Ollama
 
 <details open>
   <summary><strong>With .NET Aspire</strong></summary>
