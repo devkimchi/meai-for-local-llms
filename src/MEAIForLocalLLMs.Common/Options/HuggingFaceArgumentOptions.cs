@@ -1,15 +1,17 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
-using MEAIForLocalLLMs.WebApp.Configurations;
+using MEAIForLocalLLMs.Common.Abstractions;
+using MEAIForLocalLLMs.Common.Configurations;
 
-namespace MEAIForLocalLLMs.WebApp.Options;
+using Microsoft.Extensions.Configuration;
+
+namespace MEAIForLocalLLMs.Common.Options;
 
 /// <summary>
-/// This represents the argument options entity for Docker Model Runner.
+/// This represents the argument options entity for Hugging Face.
 /// </summary>
-public class DockerModelRunnerArgumentOptions : ArgumentOptions
+public class HuggingFaceArgumentOptions : ArgumentOptions
 {
     /// <summary>
-    /// Gets or sets the model name of Docker Model Runner.
+    /// Gets or sets the model name of Hugging Face.
     /// </summary>
     public string? Model { get; set; }
 
@@ -19,9 +21,9 @@ public class DockerModelRunnerArgumentOptions : ArgumentOptions
         var settings = new AppSettings();
         config.Bind(settings);
 
-        var docker = settings.DockerModelRunner;
+        var hf = settings.HuggingFace;
 
-        this.Model ??= docker?.Model;
+        this.Model ??= hf?.Model;
 
         for (var i = 0; i < args.Length; i++)
         {

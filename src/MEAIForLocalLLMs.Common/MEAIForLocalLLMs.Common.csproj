@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <AssemblyName>MEAIForLocalLLMs.Common</AssemblyName>
+    <RootNamespace>MEAIForLocalLLMs.Common</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AI.Foundry.Local" Version="0.*" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.*-*" />
+    <PackageReference Include="Microsoft.Extensions.AI" Version="9.*" />
+    <PackageReference Include="OllamaSharp" Version="5.*" />
+  </ItemGroup>
+
+</Project>

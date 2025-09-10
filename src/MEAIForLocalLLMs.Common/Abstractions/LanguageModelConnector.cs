@@ -1,9 +1,9 @@
-using MEAIForLocalLLMs.WebApp.Configurations;
-using MEAIForLocalLLMs.WebApp.Connectors;
+using MEAIForLocalLLMs.Common.Configurations;
+using MEAIForLocalLLMs.Common.Connectors;
 
 using Microsoft.Extensions.AI;
 
-namespace MEAIForLocalLLMs.WebApp.Abstractions;
+namespace MEAIForLocalLLMs.Common.Abstractions;
 
 /// <summary>
 /// This represents the base language model connector entity for all language model connectors to inherit.

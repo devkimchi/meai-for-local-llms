@@ -1,11 +1,11 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
-using MEAIForLocalLLMs.WebApp.Configurations;
+using MEAIForLocalLLMs.Common.Abstractions;
+using MEAIForLocalLLMs.Common.Configurations;
 
 using Microsoft.Extensions.AI;
 
 using OllamaSharp;
 
-namespace MEAIForLocalLLMs.WebApp.Connectors;
+namespace MEAIForLocalLLMs.Common.Connectors;
 
 /// <summary>
 /// This represents the connector entity for Ollama.

@@ -1,5 +1,6 @@
-using MEAIForLocalLLMs.WebApp.Abstractions;
+using MEAIForLocalLLMs.Common.Abstractions;
 using MEAIForLocalLLMs.WebApp.Components;
+using MEAIForLocalLLMs.WebApp.Extensions;
 
 using Microsoft.Extensions.AI;
 
@@ -13,17 +14,28 @@ if (settings.Help == true)
     return;
 }
 
+builder.AddServiceDefaults();
+
 builder.Services.AddSingleton(settings);
 builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-var chatClient = await LanguageModelConnector.CreateChatClientAsync(settings);
+if (settings.UseAspire == true)
+{
+    builder.AddChatClient(settings);
+}
+else
+{
+    var chatClient = await LanguageModelConnector.CreateChatClientAsync(settings);
 
-builder.Services.AddChatClient(chatClient)
-                .UseFunctionInvocation()
-                .UseLogging();
+    builder.Services.AddChatClient(chatClient)
+                    .UseFunctionInvocation()
+                    .UseLogging();
+}
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

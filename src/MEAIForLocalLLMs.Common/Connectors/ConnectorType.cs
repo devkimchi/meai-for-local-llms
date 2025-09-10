@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace MEAIForLocalLLMs.WebApp.Connectors;
+namespace MEAIForLocalLLMs.Common.Connectors;
 
 /// <summary>
 /// This specifies the type of connector to use.

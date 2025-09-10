@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 
-using MEAIForLocalLLMs.WebApp.Connectors;
+using MEAIForLocalLLMs.Common.Connectors;
 
-namespace MEAIForLocalLLMs.WebApp.Configurations;
+namespace MEAIForLocalLLMs.Common.Configurations;
 
 /// <summary>
 /// This represents the app settings entity from appsettings.json.
@@ -19,6 +19,11 @@ public partial class AppSettings
     /// </summary>
     [JsonIgnore]
     public string? Model { get; set; }
+
+    /// <summary>
+    /// Gets or sets the value indicating whether to use .NET Aspire or not.
+    /// </summary>
+    public bool UseAspire { get; set; }
 
     /// <summary>
     /// Gets or sets the value indicating whether to display help information or not.

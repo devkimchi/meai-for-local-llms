@@ -1,8 +1,10 @@
-using MEAIForLocalLLMs.WebApp.Configurations;
-using MEAIForLocalLLMs.WebApp.Connectors;
-using MEAIForLocalLLMs.WebApp.Options;
+using MEAIForLocalLLMs.Common.Configurations;
+using MEAIForLocalLLMs.Common.Connectors;
+using MEAIForLocalLLMs.Common.Options;
 
-namespace MEAIForLocalLLMs.WebApp.Abstractions;
+using Microsoft.Extensions.Configuration;
+
+namespace MEAIForLocalLLMs.Common.Abstractions;
 
 /// <summary>
 /// This represents the base argument options settings entity for all arguments options to inherit.
