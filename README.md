@@ -313,12 +313,12 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
         -- --connector-type FoundryLocal
     ```
 
-   If you want to change the language model, add the `--model` option with a preferred model name.
+   If you want to change the language model, add the `--alias` option with a preferred model name.
 
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type FoundryLocal --model <model-name>
+        -- --connector-type FoundryLocal --alias <model-name>
     ```
 
     ```powershell
@@ -360,18 +360,18 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
         -- --connector-type FoundryLocal
     ```
 
-   If you want to change the language model, add the `--model` option with a preferred model name.
+   If you want to change the language model, add the `--alias` option with a preferred model name.
 
     ```bash
     # bash/zsh
     dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type FoundryLocal --model <model-name>
+        -- --connector-type FoundryLocal --alias <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type FoundryLocal --model <model-name>
+        -- --connector-type FoundryLocal --alias <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.

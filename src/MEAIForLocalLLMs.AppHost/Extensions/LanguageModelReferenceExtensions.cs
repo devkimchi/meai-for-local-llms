@@ -34,6 +34,8 @@ public static class LanguageModelReferenceExtensions
                .WaitFor(github)
                .WithEnvironment("GitHubModels:Model", settings.GitHubModels?.Model);
 
+        LogModelIntegration("GitHub Models", settings.Model!);
+
         return project;
     }
 
@@ -53,6 +55,8 @@ public static class LanguageModelReferenceExtensions
                .WaitFor(docker)
                .WithEnvironment("DockerModelRunner:Model", settings.DockerModelRunner?.Model);
 
+        LogModelIntegration("Docker Model Runner", settings.Model!);
+
         return project;
     }
 
@@ -65,6 +69,8 @@ public static class LanguageModelReferenceExtensions
         project.WithReference(foundryLocal)
                .WaitFor(foundryLocal)
                .WithEnvironment("FoundryLocal:Alias", settings.FoundryLocal?.Alias);
+
+        LogModelIntegration("Foundry Local", settings.Model!);
 
         return project;
     }
@@ -80,6 +86,8 @@ public static class LanguageModelReferenceExtensions
                .WaitFor(model)
                .WithEnvironment("HuggingFace:Model", settings.HuggingFace?.Model);
 
+        LogModelIntegration("Hugging Face", settings.Model!);
+
         return project;
     }
 
@@ -94,6 +102,18 @@ public static class LanguageModelReferenceExtensions
                .WaitFor(model)
                .WithEnvironment("Ollama:Model", settings.Ollama?.Model);
 
+        LogModelIntegration("Ollama", settings.Model!);
+
         return project;
+    }
+
+    private static void LogModelIntegration(string connector, string model)
+    {
+        var foregroundColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine();
+        Console.WriteLine($"{connector} initialized with {model}.");
+        Console.WriteLine();
+        Console.ForegroundColor = foregroundColor;
     }
 }

@@ -29,6 +29,8 @@ public static class LanguageModelConnectorExtensions
                .UseFunctionInvocation()
                .UseLogging();
 
+        LogChatClientInitialization("GitHub Models", settings.Model!);
+
         return builder;
     }
 
@@ -38,6 +40,8 @@ public static class LanguageModelConnectorExtensions
                .AddChatClient()
                .UseFunctionInvocation()
                .UseLogging();
+
+        LogChatClientInitialization("Docker Model Runner", settings.Model!);
 
         return builder;
     }
@@ -49,6 +53,8 @@ public static class LanguageModelConnectorExtensions
                .UseFunctionInvocation()
                .UseLogging();
 
+        LogChatClientInitialization("Foundry Local", settings.Model!);
+
         return builder;
     }
 
@@ -58,6 +64,8 @@ public static class LanguageModelConnectorExtensions
                .AddChatClient()
                .UseFunctionInvocation()
                .UseLogging();
+
+        LogChatClientInitialization("Hugging Face", settings.Model!);
 
         return builder;
     }
@@ -69,6 +77,18 @@ public static class LanguageModelConnectorExtensions
                .UseFunctionInvocation()
                .UseLogging();
 
+        LogChatClientInitialization("Ollama", settings.Model!);
+
         return builder;
+    }
+
+    private static void LogChatClientInitialization(string connector, string model)
+    {
+        var foregroundColor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine();
+        Console.WriteLine($"{connector} client initialized with {model}.");
+        Console.WriteLine();
+        Console.ForegroundColor = foregroundColor;
     }
 }
