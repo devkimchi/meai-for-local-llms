@@ -1,5 +1,3 @@
-using System.Text;
-
 using MEAIForLocalLLMs.Common.Configurations;
 using MEAIForLocalLLMs.Common.Connectors;
 
@@ -27,8 +25,9 @@ public static class LanguageModelReferenceExtensions
 
     public static IResourceBuilder<ProjectResource> AddGitHubModels(this IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> project, AppSettings settings)
     {
+        var apiKey = builder.AddParameter("github-models-token", settings.GitHubModels?.Token!, secret: true);
         var github = builder.AddGitHubModel("github-models", settings.Model!)
-                            .WithHealthCheck();
+                            .WithApiKey(apiKey);
 
         project.WithReference(github)
                .WaitFor(github)
@@ -41,18 +40,14 @@ public static class LanguageModelReferenceExtensions
 
     public static IResourceBuilder<ProjectResource> AddDockerModelRunner(this IDistributedApplicationBuilder builder, IResourceBuilder<ProjectResource> project, AppSettings settings)
     {
-        var sb = new StringBuilder();
-        sb.AppendFormat("Endpoint={0};Key={1};DeploymentId={2};Model={3}",
-                        settings.DockerModelRunner?.BaseUrl,
-                        settings.DockerModelRunner?.ApiKey,
-                        settings.DockerModelRunner?.Model,
-                        settings.DockerModelRunner?.Model);
-        var connectionString = sb.ToString();
+        var apiKey = builder.AddParameter("docker-model-runner-apikey", settings.DockerModelRunner?.ApiKey!, secret: true);
+        var docker = builder.AddOpenAI("docker")
+                            .WithEndpoint(settings.DockerModelRunner?.BaseUrl!)
+                            .WithApiKey(apiKey);
+        var model = docker.AddModel("docker-model-runner", settings.DockerModelRunner?.Model!);
 
-        var docker = builder.AddConnectionString("docker-model-runner", builder => builder.AppendLiteral(connectionString));
-
-        project.WithReference(docker)
-               .WaitFor(docker)
+        project.WithReference(model)
+               .WaitFor(model)
                .WithEnvironment("DockerModelRunner:Model", settings.DockerModelRunner?.Model);
 
         LogModelIntegration("Docker Model Runner", settings.Model!);
