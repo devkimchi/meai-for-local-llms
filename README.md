@@ -6,7 +6,7 @@ This provides sample codes that uses Microsoft.Extensions.AI for locally running
 
 ## Prerequisites
 
-- [.NET SDK 9](https://dotnet.microsoft.com/download/dotnet/9.0)
+- [.NET SDK 10](https://dotnet.microsoft.com/download/dotnet/10.0)
 - [Visual Studio Code](https://code.visualstudio.com/) + [C# DevKit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit) or [Visual Studio 2022 v17.14+](https://visualstudio.com/vs)
 - [GitHub CLI](https://cli.github.com/)
 - [PowerShell 7.5+](https://learn.microsoft.com/powershell/scripting/install/installing-powershell) 👉 Windows only
@@ -59,7 +59,7 @@ This provides sample codes that uses Microsoft.Extensions.AI for locally running
 As a default, this app uses [GitHub Models](https://github.com/marketplace?type=models).
 
 <details open>
-  <summary><strong>With .NET Aspire</strong></summary>
+  <summary><strong>With Aspire</strong></summary>
 
 1. Make sure you are at the repository root.
 
@@ -72,13 +72,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        set "Parameters:github-models-gh-apikey" "{{YOUR_TOKEN}}"
+        set "GitHubModels:Token" "{{YOUR_TOKEN}}"
     ```
 
     ```bash
     # PowerShell
     dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        set "Parameters:github-models-gh-apikey" "{{YOUR_TOKEN}}"
+        set "GitHubModels:Token" "{{YOUR_TOKEN}}"
     ```
 
     > For more details about GitHub PAT, refer to the doc, [Managing your personal access tokens](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
@@ -103,12 +103,12 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
         -- --connector-type GitHubModels --model <model-name>
     ```
 
-1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
 
 </details>
 
 <details>
-  <summary><strong>Without .NET Aspire</strong></summary>
+  <summary><strong>Without Aspire</strong></summary>
 
 1. Make sure you are at the repository root.
 
@@ -159,7 +159,7 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 ### Use Docker Model Runner
 
 <details open>
-  <summary><strong>With .NET Aspire</strong></summary>
+  <summary><strong>With Aspire</strong></summary>
 
 1. Make sure Docker Desktop is up and running.
 
@@ -207,12 +207,12 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
         -- --connector-type DockerModelRunner --model <model-name>
     ```
 
-1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
 
 </details>
 
 <details>
-  <summary><strong>Without .NET Aspire</strong></summary>
+  <summary><strong>Without Aspire</strong></summary>
 
 1. Make sure Docker Desktop is up and running.
 
@@ -267,7 +267,7 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 ### Use Foundry Local
 
 <details open>
-  <summary><strong>With .NET Aspire</strong></summary>
+  <summary><strong>With Aspire</strong></summary>
 
 1. Make sure Foundry Local is NOT running.
 
@@ -286,6 +286,8 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     foundry model download gpt-oss-20b
     ```
+
+   > **NOTE**: The `gpt-oss-20b` model is currently only available on the NVIDIA GPU. For more details about this, visit [this page](https://learn.microsoft.com/azure/ai-foundry/foundry-local/get-started?view=foundry-classic#run-the-latest-openai-open-source-model).
 
    Once you download a language model, the foundry service is automatically up and running. If the service is up and running, stop it first.
 
@@ -324,15 +326,15 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type FoundryLocal --model <model-name>
+        -- --connector-type FoundryLocal --alias <model-name>
     ```
 
-1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
 
 </details>
 
 <details>
-  <summary><strong>Without .NET Aspire</strong></summary>
+  <summary><strong>Without Aspire</strong></summary>
 
 1. Download language model, `gpt-oss-20b`, to your local machine.
 
@@ -383,9 +385,9 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 Models from Hugging Face are running through Ollama server.
 
 <details open>
-  <summary><strong>With .NET Aspire</strong></summary>
+  <summary><strong>With Aspire</strong></summary>
 
-With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
+With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
 
 1. Make sure you are at the repository root.
 
@@ -421,12 +423,12 @@ With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/
         -- --connector-type HuggingFace --model <model-name>
     ```
 
-1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
 
 </details>
 
 <details>
-  <summary><strong>Without .NET Aspire</strong></summary>
+  <summary><strong>Without Aspire</strong></summary>
 
 1. Make sure Ollama is up and running.
 
@@ -481,9 +483,9 @@ With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/
 ### Use Ollama
 
 <details open>
-  <summary><strong>With .NET Aspire</strong></summary>
+  <summary><strong>With Aspire</strong></summary>
 
-With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
+With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollama/ollama). Therefore, there's no need to run the Ollama server on your local machine.
 
 1. Make sure you are at the repository root.
 
@@ -519,12 +521,12 @@ With .NET Aspire, it uses the [ollama container image](https://hub.docker.com/r/
         -- --connector-type Ollama --model <model-name>
     ```
 
-1. Once the .NET Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
+1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
 
 </details>
 
 <details>
-  <summary><strong>Without .NET Aspire</strong></summary>
+  <summary><strong>Without Aspire</strong></summary>
 
 1. Make sure Ollama is up and running.
 
