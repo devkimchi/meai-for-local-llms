@@ -1,17 +1,22 @@
-using MEAIForLocalLLMs.AppHost.Extensions;
-using MEAIForLocalLLMs.Common.Abstractions;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
-var config = builder.Configuration;
-var settings = ArgumentOptions.Parse(config, args);
-if (settings.Help == true)
-{
-    ArgumentOptions.DisplayHelp();
-    return;
-}
+// MCP Todo 서버 프로젝트 추가하기
+var mcptodo = builder.AddProject<Projects.MEAIForLocalLLMs_McpTodo>("mcptodo")
+                     .WithExternalHttpEndpoints();
 
-var webapp = builder.AddProject<Projects.MEAIForLocalLLMs_WebApp>("webapp")
-                    .WithLanguageModel(settings);
+// 백엔드 에이전트 프로젝트 수정하기
+var agent = builder.AddProject<Projects.MEAIForLocalLLMs_Agent>("agent")
+                   .WithExternalHttpEndpoints()
+                   .WithLlmReference(builder.Configuration, args)
+                   .WithReference(mcptodo)
+                   .WaitFor(mcptodo);
+// var agent = builder.AddProject<Projects.MEAIForLocalLLMs_Agent>("agent")
+//                    .WithExternalHttpEndpoints()
+//                    .WithLlmReference(builder.Configuration);
 
-builder.Build().Run();
+var webUI = builder.AddProject<Projects.MEAIForLocalLLMs_WebUI>("webui")
+                   .WithExternalHttpEndpoints()
+                   .WithReference(agent)
+                   .WaitFor(agent);
+
+await builder.Build().RunAsync();

@@ -1,16 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <IsAspireSharedProject>true</IsAspireSharedProject>
-
     <TargetFramework>net10.0</TargetFramework>
-    <LangVersion>latest</LangVersion>
-
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-
-    <AssemblyName>MEAIForLocalLLMs.ServiceDefaults</AssemblyName>
-    <RootNamespace>MEAIForLocalLLMs.ServiceDefaults</RootNamespace>
+    <IsAspireSharedProject>true</IsAspireSharedProject>
   </PropertyGroup>
 
   <ItemGroup>
