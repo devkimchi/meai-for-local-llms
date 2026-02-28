@@ -72,13 +72,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        set "GitHubModels:Token" "{{YOUR_TOKEN}}"
+        set "GitHub:Models:Token" "{{YOUR_TOKEN}}"
     ```
 
     ```bash
     # PowerShell
     dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        set "GitHubModels:Token" "{{YOUR_TOKEN}}"
+        set "GitHub:Models:Token" "{{YOUR_TOKEN}}"
     ```
 
     > For more details about GitHub PAT, refer to the doc, [Managing your personal access tokens](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
@@ -94,13 +94,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type GitHubModels --model <model-name>
+        -- --provider GitHubModels --model <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type GitHubModels --model <model-name>
+        -- --provider GitHubModels --model <model-name>
     ```
 
 1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
@@ -120,13 +120,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
     ```bash
     # bash/zsh
-    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
+    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
         set GitHubModels:Token "{{YOUR_TOKEN}}"
     ```
 
     ```bash
     # PowerShell
-    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
+    dotnet user-secrets --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
         set GitHubModels:Token "{{YOUR_TOKEN}}"
     ```
 
@@ -135,21 +135,21 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 1. Run the app. The default language model is `openai/gpt-4o-mini`.
 
     ```bash
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name. You can find the language model from the [GitHub Models catalog page](https://github.com/marketplace?type=models).
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type GitHubModels --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider GitHubModels --model <model-name>
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type GitHubModels --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider GitHubModels --model <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
@@ -184,13 +184,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type DockerModelRunner
+        -- --provider DockerModelRunner
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type DockerModelRunner
+        -- --provider DockerModelRunner
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name.
@@ -198,13 +198,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type DockerModelRunner --model <model-name>
+        -- --provider DockerModelRunner --model <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type DockerModelRunner --model <model-name>
+        -- --provider DockerModelRunner --model <model-name>
     ```
 
 1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
@@ -236,28 +236,28 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type DockerModelRunner
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider DockerModelRunner
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type DockerModelRunner
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider DockerModelRunner
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name.
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type DockerModelRunner --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider DockerModelRunner --model <model-name>
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type DockerModelRunner --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider DockerModelRunner --model <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
@@ -306,13 +306,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type FoundryLocal
+        -- --provider FoundryLocal
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type FoundryLocal
+        -- --provider FoundryLocal
     ```
 
    If you want to change the language model, add the `--alias` option with a preferred model name.
@@ -320,13 +320,13 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type FoundryLocal --alias <model-name>
+        -- --provider FoundryLocal --alias <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type FoundryLocal --alias <model-name>
+        -- --provider FoundryLocal --alias <model-name>
     ```
 
 1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
@@ -352,28 +352,28 @@ As a default, this app uses [GitHub Models](https://github.com/marketplace?type=
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type FoundryLocal
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider FoundryLocal
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type FoundryLocal
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider FoundryLocal
     ```
 
    If you want to change the language model, add the `--alias` option with a preferred model name.
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type FoundryLocal --alias <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider FoundryLocal --alias <model-name>
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type FoundryLocal --alias <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider FoundryLocal --alias <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
@@ -400,13 +400,13 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type HuggingFace
+        -- --provider HuggingFace
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type HuggingFace
+        -- --provider HuggingFace
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name. Make sure that the model name format MUST follow `hf.co/{ORG_NAME}/{MODEL_NAME}`, and the model name MUST be formatted in **GGUF**.
@@ -414,13 +414,13 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type HuggingFace --model <model-name>
+        -- --provider HuggingFace --model <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type HuggingFace --model <model-name>
+        -- --provider HuggingFace --model <model-name>
     ```
 
 1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
@@ -452,28 +452,28 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type HuggingFace
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider HuggingFace
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type HuggingFace
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider HuggingFace
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name.
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type HuggingFace --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider HuggingFace --model <model-name>
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type HuggingFace --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider HuggingFace --model <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
@@ -498,13 +498,13 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type Ollama
+        -- --provider Ollama
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type Ollama
+        -- --provider Ollama
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name.
@@ -512,13 +512,13 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
     ```bash
     # bash/zsh
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
-        -- --connector-type Ollama --model <model-name>
+        -- --provider Ollama --model <model-name>
     ```
 
     ```powershell
     # PowerShell
     dotnet watch run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
-        -- --connector-type Ollama --model <model-name>
+        -- --provider Ollama --model <model-name>
     ```
 
 1. Once the Aspire dashboard opens, click navigate to `https://localhost:45160`, and enter prompts.
@@ -550,28 +550,28 @@ With Aspire, it uses the [ollama container image](https://hub.docker.com/r/ollam
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type Ollama
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider Ollama
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type Ollama
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider Ollama
     ```
 
    If you want to change the language model, add the `--model` option with a preferred model name.
 
     ```bash
     # bash/zsh
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp \
-        -- --connector-type Ollama --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost \
+        -- --provider Ollama --model <model-name>
     ```
 
     ```powershell
     # PowerShell
-    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.WebApp `
-        -- --connector-type Ollama --model <model-name>
+    dotnet run --project $REPOSITORY_ROOT/src/MEAIForLocalLLMs.AppHost `
+        -- --provider Ollama --model <model-name>
     ```
 
 1. Open your web browser, navigate to `http://localhost:5160`, and enter prompts.
